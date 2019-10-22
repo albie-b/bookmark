@@ -21,3 +21,12 @@ bundle
  To view bookmarks, navigate to `localhost:3000/bookmarks`.
 
  ### To run tests:
+
+
+ user stories:
+ 
+ As a time pressed user
+ I want to see a list of bookmarks
+ As a user
+ So I can store bookmark data for later retrieval
+ I want to add a bookmark to Bookmark Manager
