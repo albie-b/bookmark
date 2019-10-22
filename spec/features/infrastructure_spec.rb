@@ -3,7 +3,6 @@ feature 'Viewing bookmarks' do
     visit('/')
     expect(page).to have_content "Bookmark Manager"
   end
-
   scenario 'viewing /bookmark page' do
     visit('/bookmarks')
 
