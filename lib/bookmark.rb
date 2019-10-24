@@ -12,8 +12,18 @@ class Bookmark
      @id, @title, @url  = id, title, url
    end
 
+  def self.delete(id:)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'bookmark_manager_test')
+    else
+      connection = PG.connect(dbname: 'bookmark_manager')
+    end
+    connection.exec("DELETE FROM bookmarks WHERE id = #{id}")
+    p Bookmark.all
+  end
+
   def self.all
-    if ENV['ENVIROMENT'] == 'test'
+    if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'bookmark_manager_test')
     else
       connection = PG.connect(dbname: 'bookmark_manager')
@@ -26,7 +36,7 @@ class Bookmark
   end
   def self.create(url:, title:)
     return false unless is_url?(url)
-    if ENV['ENVIROMENT'] == 'test'
+    if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'bookmark_manager_test')
     else
       connection = PG.connect(dbname: 'bookmark_manager')
